@@ -1,17 +1,20 @@
+
 // DEPENDENCIES
 const express = require('express')
 const app = express()
-const methodOverride = require('method-override')
+const { Sequelize } = require('sequelize')
+
+
+
 
 // CONFIGURATION / MIDDLEWARE
 require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(methodOverride('_method'))
 
-// CONTROLLERS
-app.use('/event', require('./controllers/Event'))
-app.use('/stage', require('./controllers/Stage'))
+// SEQUELIZE CONNECTION
+console.log(process.env.PG_URI)
+
 
 // ROOT
 app.get('/', (req, res) => {
